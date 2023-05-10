@@ -1,11 +1,21 @@
-import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
-import { useNavigation } from '@react-navigation/native'
-
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert } from "react-native";
+import { useNavigation } from '@react-navigation/native';
+import { Input } from 'react-native-elements';
 
 export default function CriarConta() {
 
     const navigation = useNavigation();
+
+    const [nome, setNome] = useState(null)
+    const [email, setEmail] = useState(null)
+    const [password, setPassword] = useState(null)
+
+    const criar = () => {
+        Alert.alert(nome);
+        Alert.alert(email);
+        Alert.alert(password);
+    }
     
     return (
         <View style={styles.container}>
@@ -14,21 +24,27 @@ export default function CriarConta() {
                 
                 <Text style={styles.message}>Criar conta</Text>
                 
-                <TextInput style={styles.input}
+                <Input 
                     placeholder="Nome *"
-                    placeholderTextColor = "#FFF"
+                    onChangeText={value => setNome(value) }
                 />
-                <TextInput style={styles.input}
+
+                <Input 
                     placeholder="E-mail *"
-                    placeholderTextColor = "#FFF"
+                    leftIcon={{type: 'font-awesome', name: 'envelope'}}
+                    onChangeText={value => setEmail(value) }
+                    keyboardType="email-address"
                 />
-                <TextInput style={styles.input}
+                <Input 
                     placeholder="Senha *"
-                    placeholderTextColor = "#FFF"
+                    leftIcon={{type: 'font-awesome', name: 'lock'}}
+                    onChangeText={value => setPassword(value) }
+                    secureTextEntry={true}
                 />
+
                 <Text style={styles.textmenor} > Precisa ter no minimo 8 caracteres </Text>
                 
-                <TouchableOpacity style={styles.submitButton} >
+                <TouchableOpacity onPress = {() => criar() }  style={styles.submitButton} >
                     <Text style={styles.submitButtonText} > Criar conta </Text>
                 </TouchableOpacity>
                

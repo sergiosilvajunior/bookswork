@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity} from 'react-native';
 import {  Logo, TextInfo } from '../../components'
@@ -31,7 +30,6 @@ export default function Inicio ()  {
             <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
         </View>
-      <StatusBar style="auto" />
     </View>
   );
 }
