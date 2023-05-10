@@ -7,14 +7,12 @@ export default function CriarConta() {
 
     const navigation = useNavigation();
 
-    const [nome, setNome] = useState(null)
-    const [email, setEmail] = useState(null)
-    const [password, setPassword] = useState(null)
+    const [nome, setNome] = useState("")
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
 
     const criar = () => {
-        Alert.alert(nome);
-        Alert.alert(email);
-        Alert.alert(password);
+        Alert.alert(`O usuário ${nome} foi criado com sucesso com o email ${email}`)
     }
     
     return (

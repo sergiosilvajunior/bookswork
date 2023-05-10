@@ -1,11 +1,22 @@
-import React from "react";
-import { View, Text, StyleSheet, TextInput, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { View, Text, StyleSheet, TextInput, TouchableOpacity,Alert } from "react-native";
 import * as Animatable from 'react-native-animatable'
 import { useNavigation } from '@react-navigation/native'
+import { Input } from 'react-native-elements';
 
 export default function Login() {
 
     const navigation = useNavigation();
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+
+    const logar = () => {
+        if (email == 'sergio@teste.com.br' &&  password  == 'teste'){
+            Alert.alert(`Login realizado com sucesso: ${email} `)
+        }else{
+            Alert.alert(`Senha ou email incorreto`)
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -14,21 +25,25 @@ export default function Login() {
             </Animatable.View>
         
             <Animatable.View animation="fadeInUp" style={styles.containerForm}>
-                <TextInput style={styles.input}
-                    placeholder="E-mail"
-                    placeholderTextColor = "#FFF"
-                />
 
-                <TextInput style={styles.input}
-                    placeholder="Senha"
-                    placeholderTextColor = "#FFF"
+                <Input style={styles.input}
+                    placeholder="E-mail *"
+                    leftIcon={{type: 'font-awesome', name: 'envelope'}}
+                    onChangeText={value => setEmail(value) }
+                    keyboardType="email-address"
+                />
+                <Input style={styles.input}
+                    placeholder="Senha *"
+                    leftIcon={{type: 'font-awesome', name: 'lock'}}
+                    onChangeText={value => setPassword(value) }
+                    secureTextEntry={true}
                 />
 
                 <TouchableOpacity onPress={ () => navigation.navigate('EsqueceuSenha')} >
                     <Text style={styles.textmenor}> Esqueci minha senha </Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.submitButton}>
+                <TouchableOpacity onPress = {() => logar() }style={styles.submitButton}>
                     <Text style={styles.submitButtonText}> Logar </Text>
                 </TouchableOpacity>
 
